@@ -1,0 +1,46 @@
+PATH
+  remote: ../../
+  specs:
+    omniauth-launchpad (0.0.1)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth (>= 1.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    coderay (1.1.0)
+    hashie (3.4.1)
+    httplog (0.2.7)
+    method_source (0.8.2)
+    multi_json (1.11.0)
+    oauth (0.4.7)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.6.0)
+    rack-protection (1.5.3)
+      rack
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    slop (3.6.0)
+    tilt (2.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  httplog
+  omniauth
+  omniauth-launchpad!
+  pry
+  sinatra
