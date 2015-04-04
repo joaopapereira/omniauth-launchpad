@@ -23,6 +23,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   
   spec.add_runtime_dependency 'omniauth', '>= 1.1.1'
-  spec.add_runtime_dependency 'omniauth-oauth', '>= 1.0.1'
+  spec.add_runtime_dependency 'omniauth-oauth'
+  #spec.add_runtime_dependency 'faraday'
+  #spec.add_runtime_dependency 'faraday_middleware'
+  #spec.add_runtime_dependency 'simple_oauth'
   spec.add_runtime_dependency 'multi_json', '~> 1.3'
 end

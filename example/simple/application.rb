@@ -21,3 +21,6 @@ post '/auth/launchpad/callback' do
   content_type 'text/plain'
   request.env['omniauth.auth'].to_hash.inspect
 end
+get '/auth/launchpad/callback' do
+  
+end
