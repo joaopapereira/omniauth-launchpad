@@ -1,5 +1,6 @@
 # Omniauth::Launchpad
 Build status: [![Build Status](https://travis-ci.org/joaopapereira/omniauth-launchpad.png?branch=master)](https://travis-ci.org/joaopapereira/omniauth-launchpad)
+
 This gem allows the user to login with the launchpad account
 
 ## Installation
