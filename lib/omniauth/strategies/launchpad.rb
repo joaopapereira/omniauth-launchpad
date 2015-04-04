@@ -4,7 +4,7 @@ require 'oauth/signature/plaintext'
 require 'omniauth-launchpad'
 #require 'faraday'
 
-module Omniauth
+module OmniAuth
   module Strategies
     class Launchpad < OmniAuth::Strategies::OAuth
       include OmniAuth::Strategy
@@ -24,7 +24,6 @@ module Omniauth
       }
       def initialize(app, consumer_key="babun", options={}, &block)
         options[:oauth_consumer_key] = consumer_key
-        options[:oauth_consumer_secret] = consumer_secret
         super(app, consumer_key, nil, options, &block)
       end
     
@@ -52,28 +51,27 @@ module Omniauth
         { raw_user_info: raw_user_info }
       end
       def request_phase
-        puts "Request info: #{options.request_param}"
           request_options = {:oauth_consumer_key => options[:oauth_consumer_key], :realm => "https://api.launchpad.net/"}
-            request_options.merge!(options[:authorize_params])
-          
-            request_token = consumer.get_request_token({:oauth_callback => callback_url}, request_options)
-            session['oauth'] ||= {}
-            session['oauth'][name.to_s] = {'callback_confirmed' => request_token.callback_confirmed?, 'request_token' => request_token.token, 'request_secret' => request_token.secret}
-            r = Rack::Response.new
-          
-            if request_token.callback_confirmed?
-              r.redirect(request_token.authorize_url)
-            else
-              r.redirect(request_token.authorize_url(:oauth_callback => callback_url))
-            end
-            @request_token = request_token
-            r.finish
-          
-            rescue ::Timeout::Error => e
-              fail!(:timeout, e)
-            rescue ::Net::HTTPFatalError, ::OpenSSL::SSL::SSLError => e
-              fail!(:service_unavailable, e)
+          request_options.merge!(options[:authorize_params])
+        
+          request_token = consumer.get_request_token({:oauth_callback => callback_url}, request_options)
+          session['oauth'] ||= {}
+          session['oauth'][name.to_s] = {'callback_confirmed' => request_token.callback_confirmed?, 'request_token' => request_token.token, 'request_secret' => request_token.secret}
+          r = Rack::Response.new
+        
+          if request_token.callback_confirmed?
+            r.redirect(request_token.authorize_url)
+          else
+            r.redirect(request_token.authorize_url(:oauth_callback => callback_url))
           end
+          @request_token = request_token
+          r.finish
+        
+          rescue ::Timeout::Error => e
+            fail!(:timeout, e)
+          rescue ::Net::HTTPFatalError, ::OpenSSL::SSL::SSLError => e
+            fail!(:service_unavailable, e)
+      end
     end
   end
 end
