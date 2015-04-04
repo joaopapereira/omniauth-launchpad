@@ -1,4 +1,0 @@
-source :rubygems
-gem 'sinatra'
-gem 'omniauth-launchpad', :path => '../../'
-gem 'omniauth'
